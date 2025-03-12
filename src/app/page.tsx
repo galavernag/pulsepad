@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { AlignRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function Home() {
   return (
     <main>
@@ -11,9 +13,9 @@ export default function Home() {
           height={100}
         />
 
-        <button>
+        <Button variant="ghost" size="icon" className="md:">
           <AlignRight />
-        </button>
+        </Button>
       </header>
 
       <section className="flex flex-col font-syne items-center justify-center px-7 py-10">

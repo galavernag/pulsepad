@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Syne } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -32,7 +33,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ClerkProvider>{children}</ClerkProvider>
           </ThemeProvider>
         </body>
       </html>

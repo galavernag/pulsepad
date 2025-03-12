@@ -1,3 +1,4 @@
+import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { LinkIcon, PlusCircleIcon, Settings2 } from "lucide-react";
 import Image from "next/image";
@@ -6,34 +7,7 @@ import Link from "next/link";
 export default function SoundboardPage() {
   return (
     <main>
-      <header className="border-b flex justify-between items-center pr-5">
-        <main className="flex flex-col justify-center gap-3 p-5">
-          <Image
-            src="/logo-pulsepad.svg"
-            alt="Pulsepad Logo"
-            width={120}
-            height={100}
-          />
-
-          <section>
-            <nav className="flex gap-3 font-syne text-sm">
-              <Link href="/app/soundboard">Soundboard</Link>
-              <Link href="/app/settings">Settings</Link>
-            </nav>
-          </section>
-        </main>
-        <div className="flex items-center gap-3">
-          <div className="flex flex-col items-end">
-            <span className="font-medium">John Doe</span>
-            <span className="text-sm text-muted-foreground">
-              john.doe@example.com
-            </span>
-          </div>
-          <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
-            <span>JD</span>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <section className="p-5">
         <header className="flex items-center justify-between">

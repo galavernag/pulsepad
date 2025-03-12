@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { LinkIcon, PlusCircleIcon, Settings2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Soundpad } from "./_components/soundpad";
 
 export default function SoundboardPage() {
   return (
@@ -19,9 +20,15 @@ export default function SoundboardPage() {
               Add new sound
             </Button>
 
-            <Button variant="outline">
-              <LinkIcon />
-              Open embed
+            <Button variant="outline" asChild>
+              <Link
+                href="/app/embed/1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkIcon />
+                Open embed
+              </Link>
             </Button>
 
             <Button variant="outline">
@@ -31,51 +38,7 @@ export default function SoundboardPage() {
           </div>
         </header>
 
-        <div className="grid grid-cols-6 gap-5 mt-7">
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-
-          <div className="p-3 border rounded-lg flex flex-col items-center justify-center h-40">
-            <h3>Sound 1</h3>
-          </div>
-        </div>
+        <Soundpad />
       </section>
     </main>
   );

@@ -44,7 +44,7 @@ export default async function SoundboardPage({
 
             <Button variant="outline" asChild>
               <Link
-                href={`/app/embed/${userId}`}
+                href={`/app/embed/${selectedSoundboardId}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -16,7 +16,12 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { env } from "@/lib/env";
-export function AddSoundEffectDialog() {
+import { addSound } from "@/actions/soundboard/add-sound";
+export function AddSoundEffectDialog({
+  soundboardId,
+}: {
+  soundboardId: string;
+}) {
   const [open, setOpen] = useState(false);
   const [sounds, setSounds] = useState<Sound[] | null>();
   const [currentPlayingSound, setCurrentPlayingSound] =
@@ -63,6 +68,11 @@ export function AddSoundEffectDialog() {
     const data2 = await response.json();
     setSounds(data2);
     setIsLoading(false);
+  }
+
+  async function handleAddSound(sound: Sound) {
+    await addSound(sound, soundboardId);
+    setOpen(false);
   }
 
   return (
@@ -124,7 +134,11 @@ export function AddSoundEffectDialog() {
               >
                 {sound.name}
                 <div className="flex items-center justify-center gap-3 px-2">
-                  <Button className="w-1/2">
+                  <Button
+                    className="w-1/2"
+                    type="button"
+                    onClick={() => handleAddSound(sound)}
+                  >
                     <PlusCircle size={32} />
                     Add
                   </Button>

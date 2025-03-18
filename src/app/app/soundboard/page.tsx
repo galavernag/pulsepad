@@ -40,7 +40,7 @@ export default async function SoundboardPage({
           />
 
           <div className="flex gap-3">
-            <AddSoundEffectDialog />
+            <AddSoundEffectDialog soundboardId={selectedSoundboardId} />
 
             <Button variant="outline" asChild>
               <Link

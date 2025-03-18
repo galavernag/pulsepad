@@ -1,7 +1,8 @@
 "use client";
+import { playSound } from "@/actions/soundboard/play-sound";
 import { Button } from "@/components/ui/button";
 import { Soundboard } from "@/types";
-import { Music, PlayIcon, PlusCircle } from "lucide-react";
+import { Music, PlayIcon } from "lucide-react";
 
 export function Soundpad(soundboard: Soundboard) {
   if (soundboard.sounds.length === 0) {
@@ -25,7 +26,11 @@ export function Soundpad(soundboard: Soundboard) {
           key={sound.id}
           className="p-3 border rounded-lg flex flex-col items-center justify-center h-40 hover:bg-secondary/50 transition-colors cursor-pointer"
         >
-          <Button variant="ghost" className="w-full h-full">
+          <Button
+            variant="ghost"
+            className="w-full h-full"
+            onClick={() => playSound(sound, soundboard.id)}
+          >
             <div className="flex flex-col items-center gap-2">
               <PlayIcon className="h-8 w-8" />
               <span className="font-medium text-center text-sm max-w-[200px] truncate">

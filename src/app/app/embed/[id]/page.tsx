@@ -1,14 +1,93 @@
+"use client";
+
+import { FirebaseOptions, getApp, getApps, initializeApp } from "firebase/app";
+import { getDatabase, onValue, ref } from "firebase/database";
+import React, { useEffect, useRef, useState } from "react";
+
+const firebaseConfig: FirebaseOptions = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
+
+const app = getApps.length > 0 ? getApp() : initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 export default function EmbedPage() {
+  const [currentSound, setCurrentSound] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [lastInteraction, setLastInteraction] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (!lastInteraction) return;
+
+    const embedRef = ref(db, "embed");
+
+    const unsubscribe = onValue(embedRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const embedData = snapshot.val();
+        let latestPlayingSoundUrl: string | null = null;
+
+        // Itera sobre os IDs dos soundboards dentro do 'embed'
+        for (const soundboardId in embedData) {
+          const soundboard = embedData[soundboardId];
+          if (soundboard && soundboard.playing && soundboard.toPlay?.url) {
+            latestPlayingSoundUrl = soundboard.toPlay.url;
+            break; // Assume que você quer tocar apenas um som por vez
+          }
+        }
+
+        if (latestPlayingSoundUrl) {
+          const shouldPlay =
+            latestPlayingSoundUrl !== currentSound || !isPlaying;
+
+          setCurrentSound(latestPlayingSoundUrl);
+          setIsPlaying(true); // Já que encontramos um som 'playing: true'
+
+          if (shouldPlay && audioRef.current) {
+            const audioElement = audioRef.current;
+            audioElement.src = latestPlayingSoundUrl;
+            audioElement.play().catch((error) => {
+              console.error("Erro ao reproduzir áudio:", error);
+            });
+          }
+        } else {
+          setIsPlaying(false);
+        }
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [lastInteraction, currentSound, isPlaying]); // Removi soundboardId, pois agora estamos escutando o nó 'embed' inteiro
+
+  const handleInteraction = () => {
+    setLastInteraction(true);
+  };
+
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
+    <main
+      className="flex flex-col items-center justify-center h-screen"
+      onClick={handleInteraction}
+    >
       <div className="p-5 max-w-3xl mx-auto">
         <h1 className="text-2xl font-syne font-medium mb-4">
           Soundboard Embed
         </h1>
-        <p className="text-sm text-amber-500 mb-4">
-          Important: Click anywhere on this page before using. Google Chrome
-          blocks audio from pages that haven't been interacted with.
-        </p>
+
+        {!lastInteraction && (
+          <p className="text-sm text-amber-500 mb-4">
+            Important: Click anywhere on this page before using. Google Chrome
+            blocks audio from pages that haven't been interacted with.
+          </p>
+        )}
 
         <div className="border rounded-lg p-4 mb-6 bg-secondary/50">
           <h2 className="text-lg font-medium mb-2">
@@ -36,9 +115,13 @@ export default function EmbedPage() {
         </div>
 
         <div className="text-center text-sm text-muted-foreground">
-          Your soundboard will appear here when configured properly.
+          {lastInteraction
+            ? "Listening for sound updates in any soundboard..."
+            : "Your soundboard will appear here when configured properly."}
         </div>
       </div>
+
+      <audio ref={audioRef} style={{ display: "none" }} />
     </main>
   );
 }

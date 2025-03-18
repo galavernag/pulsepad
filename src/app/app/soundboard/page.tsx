@@ -1,12 +1,12 @@
+import { user } from "@/actions/user";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { LinkIcon, Settings2 } from "lucide-react";
-import { Soundpad } from "./_components/soundpad";
-import Link from "next/link";
-import { user } from "@/actions/user";
-import { SoundboardSwitcher } from "./_components/soundboard-switcher";
 import { Soundboard } from "@/types";
+import { LinkIcon, Settings2 } from "lucide-react";
+import Link from "next/link";
 import { AddSoundEffectDialog } from "./_components/add-sound-dialog";
+import { SoundboardSwitcher } from "./_components/soundboard-switcher";
+import { Soundpad } from "./_components/soundpad";
 
 export const dynamic = "force-dynamic";
 

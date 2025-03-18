@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { AlignRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { AlignRight } from "lucide-react";
+import Image from "next/image";
 export default function Home() {
   return (
     <main>

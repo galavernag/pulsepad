@@ -2,9 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export function Header() {
   const { user, isLoaded } = useUser();

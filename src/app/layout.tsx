@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
+import type { Metadata } from "next";
 import "./globals.css";
 
-import { Syne } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/sonner";
+import { Syne } from "next/font/google";
 
 const syne = Syne({
   subsets: ["latin"],

@@ -3,7 +3,7 @@
 import { FirebaseOptions, getApp, getApps, initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update } from "firebase/database"; // Importe 'update'
 import { useParams } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

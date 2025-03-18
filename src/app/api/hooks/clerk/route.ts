@@ -1,8 +1,8 @@
-import { Webhook } from "svix";
-import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
-import { env } from "@/lib/env";
 import { user } from "@/actions/user";
+import { env } from "@/lib/env";
+import { WebhookEvent } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
+import { Webhook } from "svix";
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = env.CLERK_SIGNING_SECRET;

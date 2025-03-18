@@ -1,7 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { playSoundEffect } from "@/domains/soundboard/actions/play-sound-effect";
 import { Soundboard } from "@/domains/soundboard/types";
+import { Button } from "@/shared/components/ui/button";
 import { Music, PlayIcon } from "lucide-react";
 
 export function Soundpad(soundboard: Soundboard) {

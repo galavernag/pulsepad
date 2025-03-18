@@ -1,13 +1,13 @@
 "use client";
 
+import { Soundboards } from "@/domains/soundboard/types";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Soundboards } from "@/domains/soundboard/types";
+} from "@/shared/components/ui/select";
 import { useRouter } from "next/navigation";
 
 export function SoundboardSwitcher({

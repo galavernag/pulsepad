@@ -1,8 +1,8 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/shared/components/theme-provider";
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/shared/components/ui/sonner";
 import { cn } from "@/shared/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Syne } from "next/font/google";

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/components/ui/button";
 import {
   Card,
   CardContent,
@@ -6,8 +6,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { UserCarousel } from "@/components/user-carousel";
+} from "@/shared/components/ui/card";
+import { UserCarousel } from "@/shared/components/user-carousel";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { DoorOpen, LayoutDashboard } from "lucide-react";
 

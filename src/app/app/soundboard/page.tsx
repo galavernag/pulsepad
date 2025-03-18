@@ -1,7 +1,7 @@
-import { Header } from "@/components/header";
-import { Button } from "@/components/ui/button";
 import { getUserSoundboard } from "@/domains/soundboard/actions/get-user-soundboards";
 import { Soundboard } from "@/domains/soundboard/types";
+import { Header } from "@/shared/components/header";
+import { Button } from "@/shared/components/ui/button";
 import { LinkIcon, Settings2 } from "lucide-react";
 import Link from "next/link";
 import { AddSoundEffectDialog } from "./_components/add-sound-dialog";

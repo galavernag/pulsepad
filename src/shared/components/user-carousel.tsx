@@ -3,7 +3,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
+} from "@/shared/components/ui/carousel";
 import Autoslide from "embla-carousel-auto-scroll";
 import Link from "next/link";
 

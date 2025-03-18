@@ -1,5 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { addSoundEffect } from "@/domains/soundboard/actions/add-sound-effect";
+import { Sound } from "@/domains/soundboard/types";
+import { Button } from "@/shared/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,11 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
-import { addSoundEffect } from "@/domains/soundboard/actions/add-sound-effect";
-import { Sound } from "@/domains/soundboard/types";
+} from "@/shared/components/ui/dialog";
+import { Input } from "@/shared/components/ui/input";
+import { Skeleton } from "@/shared/components/ui/skeleton";
 import { PlayCircle, PlusCircle, SearchIcon, StopCircle } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";

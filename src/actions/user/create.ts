@@ -1,5 +1,5 @@
 import { firestore } from "@/lib/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 
 interface UserCreateParams {
   id: string;
@@ -9,24 +9,37 @@ interface UserCreateParams {
 }
 
 export function create(user: UserCreateParams) {
-  // Check if user document already exists
   const userRef = doc(firestore, "users", user.id);
+  const soundboardCollectionRef = collection(
+    firestore,
+    "users",
+    user.id,
+    "soundboards"
+  );
+  const newSoundboardRef = doc(soundboardCollectionRef, crypto.randomUUID());
 
-  if (!userRef) {
-    // User document does not exist, create it
-    return setDoc(userRef, {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
+  // Verificamos se o usuário já existe
+  const createUser = async () => {
+    const userDoc = await getDoc(userRef);
+
+    if (!userDoc.exists()) {
+      await setDoc(userRef, {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      });
+    }
+  };
+
+  // Criamos o soundboard
+  const createSoundboard = async () => {
+    await setDoc(newSoundboardRef, {
+      name: "Soundboard 1",
+      createdAt: new Date().toISOString(),
+      sounds: [],
     });
-  }
+  };
 
-  // User document already exists, update it
-  return setDoc(userRef, {
-    id: user.id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-  });
+  return Promise.all([createUser(), createSoundboard()]);
 }

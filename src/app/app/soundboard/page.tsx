@@ -5,6 +5,7 @@ import { Button } from "@/shared/components/ui/button";
 import { LinkIcon, Settings2 } from "lucide-react";
 import Link from "next/link";
 import { AddSoundEffectDialog } from "./_components/add-sound-dialog";
+import { CreateSoundboardDialog } from "./_components/create-soundboard-dialog";
 import { SoundboardSwitcher } from "./_components/soundboard-switcher";
 import { Soundpad } from "./_components/soundpad";
 
@@ -50,6 +51,8 @@ export default async function SoundboardPage({
             {selectedSoundboardId && (
               <AddSoundEffectDialog soundboardId={selectedSoundboardId} />
             )}
+
+            <CreateSoundboardDialog />
 
             <Button variant="outline" asChild>
               <Link

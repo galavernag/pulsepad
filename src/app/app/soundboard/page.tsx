@@ -2,38 +2,45 @@ import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { LinkIcon, PlusCircleIcon, Settings2 } from "lucide-react";
 import { Soundpad } from "./_components/soundpad";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-export default async function SoundboardPage() {
-  const { userId } = await auth();
+import { user } from "@/actions/user";
+import { SoundboardSwitcher } from "./_components/soundboard-switcher";
+import { Soundboard } from "@/types";
 
+export default async function SoundboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ soundboard: string }>;
+}) {
+  const { userId } = await auth();
+  const soundboards = await user.getSoundboards();
+
+  let { soundboard } = await searchParams;
+
+  let selectedSoundboardId = soundboard;
+  let selectedSoundboard: Soundboard;
+
+  if (selectedSoundboardId && soundboards.has(selectedSoundboardId)) {
+    selectedSoundboard = soundboards.get(selectedSoundboardId)!;
+  } else {
+    const firstEntry = Array.from(soundboards.entries())[0];
+    selectedSoundboardId = firstEntry[0];
+    selectedSoundboard = firstEntry[1]!;
+  }
   return (
     <main>
       <Header />
-
       <section className="p-5">
         <header className="flex items-center justify-between">
-          <Select defaultValue="soundboard-1">
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Soundboard" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="soundboard-1">Soundboard 1</SelectItem>
-              <SelectItem value="soundboard-2">Soundboard 2</SelectItem>
-              <SelectItem value="soundboard-3">Soundboard 3</SelectItem>
-            </SelectContent>
-          </Select>
+          <SoundboardSwitcher
+            soundboards={soundboards}
+            defaultSoundboardId={selectedSoundboardId}
+          />
 
           <div className="flex gap-3">
             <Button variant="outline">
-              <PlusCircleIcon />
+              <PlusCircleIcon className="mr-2 h-4 w-4" />
               Add new sound
             </Button>
 
@@ -43,19 +50,21 @@ export default async function SoundboardPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <LinkIcon />
+                <LinkIcon className="mr-2 h-4 w-4" />
                 Open embed
               </Link>
             </Button>
 
             <Button variant="outline">
-              <Settings2 />
+              <Settings2 className="mr-2 h-4 w-4" />
               Settings
             </Button>
           </div>
         </header>
 
-        <Soundpad />
+        <section className="mt-6">
+          <Soundpad {...selectedSoundboard} />
+        </section>
       </section>
     </main>
   );

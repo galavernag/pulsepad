@@ -1,131 +1,194 @@
 import { Button } from "@/components/ui/button";
-import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
-import { AlignRight } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { UserCarousel } from "@/components/user-carousel";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import { DoorOpen, LayoutDashboard } from "lucide-react";
+
 import Image from "next/image";
+import Link from "next/link";
+
 export default function Home() {
   return (
-    <main>
-      <header className="flex items-center justify-between px-7 py-5">
-        <Image
-          src="/logo-pulsepad.svg"
-          alt="Pulsepad Logo"
-          width={120}
-          height={100}
+    <main className="flex flex-col items-center">
+      <main className="">
+        <header className="flex items-center justify-between w-full max-w-5xl mx-auto py-5 px-10 border mt-5 rounded-full">
+          <Image
+            src="/logo-pulsepad.svg"
+            alt="Pulsepad Logo"
+            width={120}
+            height={100}
+          />
+
+          <nav className="font-syne">
+            <Link href="#pricing">Pricing</Link>
+          </nav>
+
+          <div>
+            <SignedOut>
+              <SignInButton>
+                <Button className="cursor-pointer font-syne font-medium transition-colors">
+                  <DoorOpen />
+                  Login
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/app/soundboard">
+                <Button className="cursor-pointer bg-[#c5f74f] font-syne font-medium hover:bg-[#c5f74f]/90 transition-colors">
+                  <LayoutDashboard />
+                  Open Soundboard
+                </Button>
+              </Link>
+            </SignedIn>
+          </div>
+        </header>
+
+        <section className="mt-26 flex flex-col items-center">
+          <h2 className="text-5xl max-w-2xl font-syne font-semibold text-center">
+            Unleash the power of your livestream with{" "}
+            <span className="text-[#c5f74f] underline">100% online</span>{" "}
+            soundboard.
+          </h2>
+          <p className="text-lg mt-5 max-w-2xl text-center text-white/50 italic">
+            Forget the hassles of setting up a bunch of softwares. Just open and
+            start playing 🔥
+          </p>
+
+          <SignedOut>
+            <div className="flex items-center gap-10">
+              <Link href="/log-in">
+                <Button className="scale-110 cursor-pointer mt-10 font-syne font-medium transition-colors">
+                  Login
+                </Button>
+              </Link>
+
+              <Link href="/sign-in">
+                <Button className="scale-110 cursor-pointer mt-10 bg-[#c5f74f] font-syne font-medium hover:bg-[#c5f74f]/90 transition-colors">
+                  Start now 🚀
+                </Button>
+              </Link>
+            </div>
+          </SignedOut>
+
+          <div className="rounded-lg border mt-10">
+            <Image
+              src="/demo-pulsepad.png"
+              className="rounded-lg"
+              alt="A screenshot of Pulsepad"
+              width={1100}
+              height={1100}
+            />
+          </div>
+        </section>
+        <UserCarousel
+          users={[
+            {
+              name: "Guilherme Galaverna",
+              img: "https://github.com/galavernag.png",
+              link: "https://github.com/galavernag",
+            },
+
+            {
+              name: "Guilherme Galaverna",
+              img: "https://github.com/galavernag.png",
+              link: "https://github.com/galavernag",
+            },
+
+            {
+              name: "Guilherme Galaverna",
+              img: "https://github.com/galavernag.png",
+              link: "https://github.com/galavernag",
+            },
+
+            {
+              name: "Guilherme Galaverna",
+              img: "https://github.com/galavernag.png",
+              link: "https://github.com/galavernag",
+            },
+
+            {
+              name: "Guilherme Galaverna",
+              img: "https://github.com/galavernag.png",
+              link: "https://github.com/galavernag",
+            },
+
+            {
+              name: "Guilherme Galaverna",
+              img: "https://github.com/galavernag.png",
+              link: "https://github.com/galavernag",
+            },
+          ]}
         />
 
-        <SignedOut>
-          <SignInButton />
-          <SignUpButton />
-        </SignedOut>
+        <section
+          id="pricing"
+          className="flex flex-col items-center mt-10 gap-10"
+        >
+          <div className="text-center space-y-3">
+            <h2 className="font-syne text-3xl font-bold">Pricing 💰</h2>
+            <p>Choose the plan that fits your needs.</p>
+          </div>
 
-        <Button variant="ghost" size="icon" className="md:">
-          <AlignRight />
-        </Button>
-      </header>
+          <div className="grid grid-cols-2 gap-10">
+            <Card className="scale-110">
+              <CardHeader>
+                <CardTitle>Free</CardTitle>
+                <CardDescription>
+                  <span className="text-2xl font-bold">$0</span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <li>Free forever</li>
+                <li>10 sounds</li>
+                <li>1 soundboard</li>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Subscribe</Button>
+              </CardFooter>
+            </Card>
 
-      <section className="flex flex-col font-syne items-center justify-center px-7 py-10">
-        <h1 className="text-4xl font-bold text-center">
-          Unleash the power of your stream!!
-        </h1>
+            <Card className="scale-110">
+              <CardHeader>
+                <CardTitle>Free</CardTitle>
+                <CardDescription>
+                  <span className="text-2xl font-bold">$0</span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <li>Free forever</li>
+                <li>10 sounds</li>
+                <li>1 soundboard</li>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Subscribe</Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </section>
+      </main>
+      {/* <footer className="bg-zinc-100 mt-10 w-full h-[600px] before:w-full before:block before:h-[70px] before:rounded-b-full before:bg-background text-black">
+        <main className="grid grid-cols-2 px-40 py-24">
+          <div className="space-y-4">
+            <img src="/logo-pulsepad-dark.svg" alt="" className="scale-125" />
 
-        <p className="text-lg text-center text-muted-foreground mt-4">
-          Pulsepad is a streaming platform that allows you to power up your
-        </p>
-      </section>
-
-      <section className="flex flex-col items-center justify-center px-7 py-10 bg-secondary">
-        <h2 className="text-3xl font-bold text-center">What is Pulsepad?</h2>
-        <p className="text-lg text-center text-muted-foreground mt-4 max-w-2xl">
-          Pulsepad is a 100% online soundboard designed specifically for
-          streamers. Play funny sounds and add excitement to your streams
-          without installing any software - just open your browser and start
-          entertaining your audience with perfectly timed sound effects.
-        </p>
-      </section>
-
-      <section className="flex flex-col items-center justify-center px-7 py-10">
-        <h2 className="text-3xl font-bold text-center">Simple Pricing</h2>
-        <div className="grid gap-8 mt-8 md:grid-cols-3">
-          <div className="p-6 border rounded-lg">
-            <h3 className="text-xl font-bold">Free</h3>
-            <p className="mt-2 text-3xl font-bold">$0</p>
-            <p className="mt-4 text-muted-foreground">
-              Perfect for casual streamers
-            </p>
-            <ul className="mt-4 space-y-2">
-              <li>10 sound slots</li>
-              <li>Basic sound effects library</li>
-              <li>Standard quality audio</li>
+            <ul className="font-syne">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="#pricing">Pricing</Link>
+              </li>
             </ul>
           </div>
-          <div className="p-6 border rounded-lg bg-primary text-primary-foreground">
-            <h3 className="text-xl font-bold">Pro</h3>
-            <p className="mt-2 text-3xl font-bold">$4.99/mo</p>
-            <p className="mt-4 opacity-90">For dedicated streamers</p>
-            <ul className="mt-4 space-y-2">
-              <li>Unlimited sound slots</li>
-              <li>Premium sound effects library</li>
-              <li>High quality audio</li>
-              <li>Custom sound uploads</li>
-            </ul>
-          </div>
-          <div className="p-6 border rounded-lg">
-            <h3 className="text-xl font-bold">Team</h3>
-            <p className="mt-2 text-3xl font-bold">$12.99/mo</p>
-            <p className="mt-4 text-muted-foreground">For streaming teams</p>
-            <ul className="mt-4 space-y-2">
-              <li>Everything in Pro</li>
-              <li>Share soundboards</li>
-              <li>Team collaboration</li>
-              <li>Priority support</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="flex flex-col items-center justify-center px-7 py-10 bg-secondary">
-        <h2 className="text-3xl font-bold text-center">
-          Frequently Asked Questions
-        </h2>
-        <div className="mt-8 space-y-6 max-w-3xl w-full">
-          <div className="border-b pb-4">
-            <h3 className="text-xl font-bold">
-              Do I need to download anything?
-            </h3>
-            <p className="mt-2 text-muted-foreground">
-              No! Pulsepad runs completely in your browser - no downloads or
-              installations required.
-            </p>
-          </div>
-          <div className="border-b pb-4">
-            <h3 className="text-xl font-bold">
-              What audio formats are supported?
-            </h3>
-            <p className="mt-2 text-muted-foreground">
-              We support MP3, WAV, and OGG formats for custom sound uploads on
-              paid plans.
-            </p>
-          </div>
-          <div className="border-b pb-4">
-            <h3 className="text-xl font-bold">
-              Can I use Pulsepad with any streaming platform?
-            </h3>
-            <p className="mt-2 text-muted-foreground">
-              Yes! Pulsepad works with all major streaming platforms including
-              Twitch, YouTube, and Facebook Gaming.
-            </p>
-          </div>
-          <div className="border-b pb-4">
-            <h3 className="text-xl font-bold">
-              How do I play sounds during my stream?
-            </h3>
-            <p className="mt-2 text-muted-foreground">
-              Simply click on your saved sounds or use customizable keyboard
-              shortcuts to trigger them instantly during your stream.
-            </p>
-          </div>
-        </div>
-      </section>
+        </main>
+      </footer> */}
     </main>
   );
 }

@@ -17,12 +17,6 @@ const envSchema = z.object({
   VERCEL_STORAGE_READ_WRITE_TOKEN: z.string(),
   MYINSTANTS_ENDPOINT: z.string(),
   NEXT_PUBLIC_MYINSTANTS_ENDPOINT: z.string(),
-
-  AWS_REGION: z.string(),
-  AWS_ACCESS_KEY_ID: z.string(),
-  AWS_SECRET_ACCESS_KEY: z.string(),
-  AWS_S3_BUCKET_NAME: z.string(),
-  S3_ENDPOINT: z.string(),
 });
 
 export const env = envSchema.parse(process.env);

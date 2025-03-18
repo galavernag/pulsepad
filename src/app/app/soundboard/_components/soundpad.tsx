@@ -19,15 +19,19 @@ export function Soundpad(soundboard: Soundboard) {
   }
 
   return (
-    <div className="grid grid-cols-6 gap-5 mt-7">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 mt-7">
       {soundboard.sounds.map((sound) => (
         <div
           key={sound.id}
-          className="p-3 border rounded-lg flex flex-col items-center justify-center h-40 hover:bg-secondary/50 transition-colors"
+          className="p-3 border rounded-lg flex flex-col items-center justify-center h-40 hover:bg-secondary/50 transition-colors cursor-pointer"
         >
-          <Button variant="ghost" className="w-full h-full flex flex-col gap-2">
-            <PlayIcon className="h-8 w-8" />
-            <h3 className="font-medium">{sound.name}</h3>
+          <Button variant="ghost" className="w-full h-full">
+            <div className="flex flex-col items-center gap-2">
+              <PlayIcon className="h-8 w-8" />
+              <span className="font-medium text-center text-sm max-w-[200px] truncate">
+                {sound.name}
+              </span>
+            </div>
           </Button>
         </div>
       ))}

@@ -1,5 +1,5 @@
 import { AppError } from "@/errors/app-error";
-import { env } from "@/lib/env";
+import { env } from "@/shared/lib/env";
 import { Sound } from "@/types";
 import * as cheerio from "cheerio";
 import { NextRequest, NextResponse } from "next/server";

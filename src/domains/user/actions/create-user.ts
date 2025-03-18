@@ -1,5 +1,5 @@
 "use server";
-import { firestore } from "@/lib/firebase";
+import { firestore } from "@/shared/lib/firebase";
 import { collection, doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 interface UserCreateParams {
   id: string;

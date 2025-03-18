@@ -1,5 +1,5 @@
 "use server";
-import { firestore } from "@/lib/firebase";
+import { firestore } from "@/shared/lib/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 
 export async function deleteUser(id: string) {

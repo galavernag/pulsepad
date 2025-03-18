@@ -1,6 +1,6 @@
 "use server";
 
-import { firestore } from "@/lib/firebase";
+import { firestore } from "@/shared/lib/firebase";
 import { auth } from "@clerk/nextjs/server";
 import { collection, getDocs, query, Timestamp } from "firebase/firestore";
 import { Soundboards } from "../types";

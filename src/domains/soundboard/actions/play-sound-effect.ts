@@ -1,6 +1,6 @@
 "use server";
 
-import { db } from "@/lib/firebase";
+import { db } from "@/shared/lib/firebase";
 import { ref, set } from "firebase/database";
 import { Sound } from "../types";
 

@@ -1,6 +1,6 @@
 "use server";
 
-import { firestore } from "@/lib/firebase";
+import { firestore } from "@/shared/lib/firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { Sound } from "../types";
 

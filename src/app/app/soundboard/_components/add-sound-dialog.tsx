@@ -1,5 +1,4 @@
 "use client";
-import { addSound } from "@/actions/soundboard/add-sound";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,7 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Sound } from "@/types";
+import { addSoundEffect } from "@/domains/soundboard/actions/add-sound-effect";
+import { Sound } from "@/domains/soundboard/types";
 import { PlayCircle, PlusCircle, SearchIcon, StopCircle } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -69,7 +69,7 @@ export function AddSoundEffectDialog({
   }
 
   async function handleAddSound(sound: Sound) {
-    await addSound(sound, soundboardId);
+    await addSoundEffect(sound, soundboardId);
     setOpen(false);
   }
 

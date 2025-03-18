@@ -7,13 +7,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Soundboards } from "@/domains/soundboard/types";
 import { useRouter } from "next/navigation";
 
 export function SoundboardSwitcher({
   soundboards,
   defaultSoundboardId,
 }: {
-  soundboards: Map<string, { id: string; name: string }>;
+  soundboards: Soundboards;
   defaultSoundboardId: string;
 }) {
   const router = useRouter();

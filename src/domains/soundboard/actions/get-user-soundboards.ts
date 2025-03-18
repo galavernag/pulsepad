@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { collection, getDocs, query, Timestamp } from "firebase/firestore";
 import { Soundboards } from "../types";
 
-export async function getUserSoundboard(): Promise<Soundboards | false> {
+export async function getUserSoundboard(): Promise<Soundboards> {
   try {
     const { userId } = await auth();
 
@@ -17,6 +17,7 @@ export async function getUserSoundboard(): Promise<Soundboards | false> {
         return [
           doc.id,
           {
+            id: doc.id,
             name: doc.data().name,
             createdAt: (doc.data().createdAt as Timestamp)
               .toDate()
@@ -29,6 +30,6 @@ export async function getUserSoundboard(): Promise<Soundboards | false> {
   } catch (error) {
     // TODO: Handle error
     console.error(error);
-    return false;
+    throw error;
   }
 }

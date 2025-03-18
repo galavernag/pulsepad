@@ -1,7 +1,7 @@
 "use client";
-import { playSound } from "@/actions/soundboard/play-sound";
 import { Button } from "@/components/ui/button";
-import { Soundboard } from "@/types";
+import { playSoundEffect } from "@/domains/soundboard/actions/play-sound-effect";
+import { Soundboard } from "@/domains/soundboard/types";
 import { Music, PlayIcon } from "lucide-react";
 
 export function Soundpad(soundboard: Soundboard) {
@@ -29,7 +29,7 @@ export function Soundpad(soundboard: Soundboard) {
           <Button
             variant="ghost"
             className="w-full h-full curosr-pointer"
-            onClick={() => playSound(sound, soundboard.id)}
+            onClick={() => playSoundEffect(sound, soundboard.id)}
           >
             <div className="flex flex-col items-center gap-2">
               <PlayIcon className="h-8 w-8" />

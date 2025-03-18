@@ -1,7 +1,7 @@
-import { user } from "@/actions/user";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { Soundboard } from "@/types";
+import { getUserSoundboard } from "@/domains/soundboard/actions/get-user-soundboards";
+import { Soundboard } from "@/domains/soundboard/types";
 import { LinkIcon, Settings2 } from "lucide-react";
 import Link from "next/link";
 import { AddSoundEffectDialog } from "./_components/add-sound-dialog";
@@ -15,7 +15,7 @@ export default async function SoundboardPage({
 }: {
   searchParams: Promise<{ soundboard: string }>;
 }) {
-  const soundboards = await user.getSoundboards();
+  const soundboards = await getUserSoundboard();
 
   const { soundboard } = await searchParams;
 

@@ -1,7 +1,8 @@
 "use client";
 
 import { FirebaseOptions, getApp, getApps, initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getDatabase, onValue, ref, update } from "firebase/database"; // Importe 'update'
+import { useParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 const firebaseConfig: FirebaseOptions = {
@@ -19,55 +20,61 @@ const app = getApps.length > 0 ? getApp() : initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 export default function EmbedPage() {
+  // Removi a tipagem de params aqui para simplificar, mas você pode mantê-la se precisar
+  const { id } = useParams();
   const [currentSound, setCurrentSound] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [lastInteraction, setLastInteraction] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (!lastInteraction) return;
+    if (!id || !lastInteraction) return; // Garante que 'id' exista antes de criar a referência
 
-    const embedRef = ref(db, "embed");
+    const embedRef = ref(db, `embed/${id}`);
 
     const unsubscribe = onValue(embedRef, (snapshot) => {
       if (snapshot.exists()) {
         const embedData = snapshot.val();
-        let latestPlayingSoundUrl: string | null = null;
 
-        // Itera sobre os IDs dos soundboards dentro do 'embed'
-        for (const soundboardId in embedData) {
-          const soundboard = embedData[soundboardId];
-          if (soundboard && soundboard.playing && soundboard.toPlay?.url) {
-            latestPlayingSoundUrl = soundboard.toPlay.url;
-            break; // Assume que você quer tocar apenas um som por vez
-          }
-        }
-
-        if (latestPlayingSoundUrl) {
+        if (embedData.toPlay) {
           const shouldPlay =
-            latestPlayingSoundUrl !== currentSound || !isPlaying;
+            embedData.playing &&
+            (embedData.toPlay.url !== currentSound || !isPlaying);
 
-          setCurrentSound(latestPlayingSoundUrl);
-          setIsPlaying(true); // Já que encontramos um som 'playing: true'
+          setCurrentSound(embedData.toPlay.url);
+          setIsPlaying(embedData.playing === true);
 
           if (shouldPlay && audioRef.current) {
             const audioElement = audioRef.current;
-            audioElement.src = latestPlayingSoundUrl;
+            audioElement.src = embedData.toPlay.url;
             audioElement.play().catch((error) => {
               console.error("Erro ao reproduzir áudio:", error);
             });
+            audioElement.onended = async () => {
+              setIsPlaying(false);
+              const soundboardRef = ref(db, `embed/${id}`);
+              await update(soundboardRef, {
+                playing: false,
+              });
+            };
           }
         } else {
           setIsPlaying(false);
+          setCurrentSound(null); // Limpa o som atual se toPlay não existir
         }
+      } else {
+        console.log(`Soundboard com ID ${id} não encontrado.`);
+        setIsPlaying(false);
+        setCurrentSound(null);
       }
     });
 
     return () => {
       unsubscribe();
     };
-  }, [lastInteraction, currentSound, isPlaying]); // Removi soundboardId, pois agora estamos escutando o nó 'embed' inteiro
+  }, [id, lastInteraction, currentSound, isPlaying]);
 
+  // Registrar interação do usuário
   const handleInteraction = () => {
     setLastInteraction(true);
   };
@@ -116,7 +123,7 @@ export default function EmbedPage() {
 
         <div className="text-center text-sm text-muted-foreground">
           {lastInteraction
-            ? "Listening for sound updates in any soundboard..."
+            ? `Listening for sound updates for soundboard ID: ${id}...`
             : "Your soundboard will appear here when configured properly."}
         </div>
       </div>

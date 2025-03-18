@@ -14,6 +14,8 @@ import { Sound } from "@/types";
 import { PlayCircle, PlusCircle, SearchIcon, StopCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
+import { env } from "@/lib/env";
 export function AddSoundEffectDialog() {
   const [open, setOpen] = useState(false);
   const [sounds, setSounds] = useState<Sound[] | null>();
@@ -80,6 +82,16 @@ export function AddSoundEffectDialog() {
           <DialogTitle>Add sound</DialogTitle>
           <DialogDescription>
             Select new sound from the list above.
+            <br />
+            <br />
+            Note: If you want to add a custom sound, you can upload it to{" "}
+            <Link
+              href="https://www.myinstants.com"
+              className="underline text-lime-500 font-medium font-syne"
+            >
+              MyInstants
+            </Link>{" "}
+            site.
           </DialogDescription>
         </DialogHeader>
         <form action={handleSearchSubmit} className="space-y-3">

@@ -2,6 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { env } from "@/lib/env";
+import { user } from "@/actions/user";
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = env.CLERK_SIGNING_SECRET;
@@ -52,8 +53,19 @@ export async function POST(req: Request) {
   // For this guide, log payload to console
   const { id } = evt.data;
   const eventType = evt.type;
-  console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
-  console.log("Webhook payload:", body);
+
+  switch (eventType) {
+    case "user.created":
+      await user.create({
+        id: payload.data["id"],
+        firstName: payload.data["first_name"],
+        lastName: payload.data["last_name"],
+        email: payload.data["email_addresses"][0]["email_address"],
+      });
+      break;
+    default:
+      break;
+  }
 
   return new Response("Webhook received", { status: 200 });
 }

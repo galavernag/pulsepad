@@ -1,8 +1,7 @@
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { LinkIcon, PlusCircleIcon, Settings2 } from "lucide-react";
+import { LinkIcon, Settings2 } from "lucide-react";
 import { Soundpad } from "./_components/soundpad";
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { user } from "@/actions/user";
 import { SoundboardSwitcher } from "./_components/soundboard-switcher";

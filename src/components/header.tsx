@@ -5,7 +5,6 @@ import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect, useState } from "react";
 
 export function Header() {
   const { user, isLoaded } = useUser();

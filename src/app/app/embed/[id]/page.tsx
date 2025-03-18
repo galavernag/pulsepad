@@ -92,7 +92,7 @@ export default function EmbedPage() {
         {!lastInteraction && (
           <p className="text-sm text-amber-500 mb-4">
             Important: Click anywhere on this page before using. Google Chrome
-            blocks audio from pages that haven't been interacted with.
+            blocks audio from pages that haven&apos;t been interacted with.
           </p>
         )}
 
@@ -108,8 +108,8 @@ export default function EmbedPage() {
             </li>
             <li>3. Select this browser window/tab from the dropdown menu.</li>
             <li>
-              4. Make sure to enable <strong>"Capture Audio"</strong> in the
-              source properties.
+              4. Make sure to enable <strong>&quot;Capture Audio&quot;</strong>
+              in the source properties.
             </li>
             <li>
               5. Adjust the capture area as needed to fit your stream layout.

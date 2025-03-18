@@ -1,26 +1,26 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { PlayIcon } from "lucide-react";
+import { Soundboard } from "@/types";
+import { Music, PlayIcon, PlusCircle } from "lucide-react";
 
-// Sample sound data - in a real app this would come from a database or API
-const soundData = [
-  { id: 1, name: "Applause", url: "/sounds/applause.mp3" },
-  { id: 2, name: "Drum Roll", url: "/sounds/drumroll.mp3" },
-  { id: 3, name: "Laugh Track", url: "/sounds/laugh.mp3" },
-  { id: 4, name: "Airhorn", url: "/sounds/airhorn.mp3" },
-  { id: 5, name: "Sad Trombone", url: "/sounds/sadtrombone.mp3" },
-  { id: 6, name: "Victory", url: "/sounds/victory.mp3" },
-  { id: 7, name: "Suspense", url: "/sounds/suspense.mp3" },
-  { id: 8, name: "Explosion", url: "/sounds/explosion.mp3" },
-  { id: 9, name: "Beep", url: "/sounds/beep.mp3" },
-  { id: 10, name: "Ding", url: "/sounds/ding.mp3" },
-  { id: 11, name: "Error", url: "/sounds/error.mp3" },
-];
+export function Soundpad(soundboard: Soundboard) {
+  if (soundboard.sounds.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center bg-secondary/25 rounded-lg p-4 mt-32 h-40 max-w-xs gap-3 border border-secondary/35">
+          <Music className="h-8 w-8" />
+          <h3 className="font-medium">No sounds found</h3>
+          <p className="text-sm text-muted-foreground">
+            Add some sounds to this soundboard
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-export function Soundpad() {
   return (
     <div className="grid grid-cols-6 gap-5 mt-7">
-      {soundData.map((sound) => (
+      {soundboard.sounds.map((sound) => (
         <div
           key={sound.id}
           className="p-3 border rounded-lg flex flex-col items-center justify-center h-40 hover:bg-secondary/50 transition-colors"

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { user } from "@/actions/user";
 import { SoundboardSwitcher } from "./_components/soundboard-switcher";
 import { Soundboard } from "@/types";
+import { AddSoundEffectDialog } from "./_components/add-sound-dialog";
 
 export default async function SoundboardPage({
   searchParams,
@@ -39,10 +40,7 @@ export default async function SoundboardPage({
           />
 
           <div className="flex gap-3">
-            <Button variant="outline">
-              <PlusCircleIcon className="mr-2 h-4 w-4" />
-              Add new sound
-            </Button>
+            <AddSoundEffectDialog />
 
             <Button variant="outline" asChild>
               <Link

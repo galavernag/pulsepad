@@ -16,7 +16,7 @@ export default async function SoundboardPage({
 }) {
   const soundboards = await user.getSoundboards();
 
-  let { soundboard } = await searchParams;
+  const { soundboard } = await searchParams;
 
   let selectedSoundboardId: string | undefined = soundboard;
   let selectedSoundboard: Soundboard | undefined; // Permitir que selectedSoundboard seja undefined inicialmente

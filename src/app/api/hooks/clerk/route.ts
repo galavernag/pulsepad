@@ -1,4 +1,4 @@
-import { user } from "@/actions/user";
+import { createUser } from "@/domains/user/actions/create-user";
 import { env } from "@/shared/lib/env";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 
   switch (eventType) {
     case "user.created":
-      await user.create({
+      await createUser({
         id: payload.data["id"],
         firstName: payload.data["first_name"],
         lastName: payload.data["last_name"],

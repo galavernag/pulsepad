@@ -1,5 +1,5 @@
 import { firestore } from "@/lib/firebase";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 
 interface UserCreateParams {
   id: string;
@@ -36,7 +36,7 @@ export function create(user: UserCreateParams) {
   const createSoundboard = async () => {
     await setDoc(newSoundboardRef, {
       name: "Soundboard 1",
-      createdAt: new Date().toISOString(),
+      createdAt: Timestamp.now(),
       sounds: [],
     });
   };

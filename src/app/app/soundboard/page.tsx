@@ -2,10 +2,11 @@ import { getUserSoundboard } from "@/domains/soundboard/actions/get-user-soundbo
 import { Soundboard } from "@/domains/soundboard/types";
 import { Header } from "@/shared/components/header";
 import { Button } from "@/shared/components/ui/button";
-import { LinkIcon, Settings2 } from "lucide-react";
+import { LinkIcon } from "lucide-react";
 import Link from "next/link";
 import { AddSoundEffectDialog } from "./_components/add-sound-dialog";
 import { CreateSoundboardDialog } from "./_components/create-soundboard-dialog";
+import { SettingsDialog } from "./_components/settings-dialog";
 import { SoundboardSwitcher } from "./_components/soundboard-switcher";
 import { Soundpad } from "./_components/soundpad";
 
@@ -53,7 +54,7 @@ export default async function SoundboardPage({
             )}
 
             <CreateSoundboardDialog />
-
+            <SettingsDialog id={selectedSoundboardId!} />
             <Button variant="outline" asChild>
               <Link
                 href={`/app/embed/${selectedSoundboardId}`}
@@ -63,11 +64,6 @@ export default async function SoundboardPage({
                 <LinkIcon className="mr-2 h-4 w-4" />
                 Open embed
               </Link>
-            </Button>
-
-            <Button variant="outline">
-              <Settings2 className="mr-2 h-4 w-4" />
-              Settings
             </Button>
           </div>
         </header>

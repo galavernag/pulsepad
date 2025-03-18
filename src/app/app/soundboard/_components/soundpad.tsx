@@ -21,14 +21,14 @@ export function Soundpad(soundboard: Soundboard) {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 mt-7">
-      {soundboard.sounds.map((sound) => (
+      {soundboard.sounds.map((sound, idx) => (
         <div
-          key={sound.id}
-          className="p-3 border rounded-lg flex flex-col items-center justify-center h-40 hover:bg-secondary/50 transition-colors cursor-pointer"
+          key={idx}
+          className="p-3 border rounded-lg flex flex-col items-center justify-center h-40 hover:bg-secondary/50 focus-within:border-lime-500 transition-colors cursor-pointer"
         >
           <Button
             variant="ghost"
-            className="w-full h-full"
+            className="w-full h-full curosr-pointer"
             onClick={() => playSound(sound, soundboard.id)}
           >
             <div className="flex flex-col items-center gap-2">

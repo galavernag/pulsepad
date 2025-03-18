@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
           const match = onclickAttr.match(/play\('([^']+)'/);
           if (match) {
             sounds.push({
-              id: crypto.randomUUID(),
+              id: index.toString(),
               name: title,
               url: new URL(match[1], env.MYINSTANTS_ENDPOINT).href,
             });

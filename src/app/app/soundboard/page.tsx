@@ -14,21 +14,27 @@ export default async function SoundboardPage({
 }: {
   searchParams: Promise<{ soundboard: string }>;
 }) {
-  const { userId } = await auth();
   const soundboards = await user.getSoundboards();
 
   let { soundboard } = await searchParams;
 
-  let selectedSoundboardId = soundboard;
-  let selectedSoundboard: Soundboard;
+  let selectedSoundboardId: string | undefined = soundboard;
+  let selectedSoundboard: Soundboard | undefined; // Permitir que selectedSoundboard seja undefined inicialmente
 
   if (selectedSoundboardId && soundboards.has(selectedSoundboardId)) {
     selectedSoundboard = soundboards.get(selectedSoundboardId)!;
   } else {
     const firstEntry = Array.from(soundboards.entries())[0];
-    selectedSoundboardId = firstEntry[0];
-    selectedSoundboard = firstEntry[1]!;
+    if (firstEntry) {
+      selectedSoundboardId = firstEntry[0];
+      selectedSoundboard = firstEntry[1]!;
+    } else {
+      // Caso não haja nenhum soundboard
+      selectedSoundboardId = undefined;
+      selectedSoundboard = undefined;
+    }
   }
+
   return (
     <main>
       <Header />
@@ -36,11 +42,13 @@ export default async function SoundboardPage({
         <header className="flex items-center justify-between">
           <SoundboardSwitcher
             soundboards={soundboards}
-            defaultSoundboardId={selectedSoundboardId}
+            defaultSoundboardId={selectedSoundboardId!}
           />
 
           <div className="flex gap-3">
-            <AddSoundEffectDialog soundboardId={selectedSoundboardId} />
+            {selectedSoundboardId && (
+              <AddSoundEffectDialog soundboardId={selectedSoundboardId} />
+            )}
 
             <Button variant="outline" asChild>
               <Link
@@ -61,7 +69,11 @@ export default async function SoundboardPage({
         </header>
 
         <section className="mt-6">
-          <Soundpad {...selectedSoundboard} />
+          {selectedSoundboard ? (
+            <Soundpad {...selectedSoundboard} />
+          ) : (
+            <p>Você ainda não possui nenhum soundboard. Crie um!</p>
+          )}
         </section>
       </section>
     </main>

@@ -13,9 +13,8 @@ const envSchema = z.object({
   FIREBASE_APP_ID: z.string(),
   FIREBASE_MEASUREMENT_ID: z.string(),
 
-  NEXT_PUBLIC_MY_INSTANTS_API_ENDPOINT: z.string(),
-
   VERCEL_STORAGE_READ_WRITE_TOKEN: z.string(),
+  MYINSTANTS_ENDPOINT: z.string(),
 
   AWS_REGION: z.string(),
   AWS_ACCESS_KEY_ID: z.string(),

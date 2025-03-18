@@ -7,7 +7,7 @@ interface UserCreateParams {
   lastName: string;
   email: string;
 }
-export function createUser(user: UserCreateParams) {
+export async function createUser(user: UserCreateParams) {
   try {
     const userRef = doc(firestore, "users", user.id);
     const soundboardCollectionRef = collection(

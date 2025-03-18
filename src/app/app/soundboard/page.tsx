@@ -8,6 +8,8 @@ import { SoundboardSwitcher } from "./_components/soundboard-switcher";
 import { Soundboard } from "@/types";
 import { AddSoundEffectDialog } from "./_components/add-sound-dialog";
 
+export const dynamic = "force-dynamic";
+
 export default async function SoundboardPage({
   searchParams,
 }: {

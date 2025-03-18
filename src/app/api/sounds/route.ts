@@ -1,3 +1,4 @@
+import { AppError } from "@/errors/app-error";
 import { env } from "@/lib/env";
 import { Sound } from "@/types";
 import * as cheerio from "cheerio";
@@ -78,9 +79,7 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (error) {
-    return NextResponse.json(
-      { error: "An error occurred while fetching data" },
-      { status: 500 }
-    );
+    console.error(error);
+    throw new AppError("MyInstantsAPI", "Error getting sounds.");
   }
 }

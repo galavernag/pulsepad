@@ -1,5 +1,6 @@
 "use server";
 
+import { AppError } from "@/errors/app-error";
 import { db } from "@/lib/firebase";
 import { Sound } from "@/types";
 import { ref, set } from "firebase/database";
@@ -13,6 +14,7 @@ export async function playSound(sound: Sound, soundboardId: string) {
     });
     return true;
   } catch (error) {
-    return false;
+    console.error(error);
+    throw new AppError("SoundboardPlaySound", "Error playing sound.");
   }
 }

@@ -1,5 +1,6 @@
 "use server";
 
+import { AppError } from "@/errors/app-error";
 import { firestore } from "@/lib/firebase";
 import { Sound } from "@/types";
 import { auth } from "@clerk/nextjs/server";
@@ -27,5 +28,11 @@ export async function addSound(sound: Sound, soundboardId: string) {
       }),
     });
     return true;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    throw new AppError(
+      "SoundboardAddSound",
+      "Error adding sound to soundboard."
+    );
+  }
 }

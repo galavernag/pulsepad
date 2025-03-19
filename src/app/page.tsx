@@ -63,11 +63,11 @@ export default function Home() {
 
           <SignedOut>
             <div className="flex items-center gap-10">
-              <Link href="/log-in">
+              <SignInButton>
                 <Button className="scale-110 cursor-pointer mt-10 font-syne font-medium transition-colors">
                   Login
                 </Button>
-              </Link>
+              </SignInButton>
 
               <Link href="/sign-in">
                 <Button className="scale-110 cursor-pointer mt-10 bg-[#c5f74f] font-syne font-medium hover:bg-[#c5f74f]/90 transition-colors">

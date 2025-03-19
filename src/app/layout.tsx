@@ -5,6 +5,7 @@ import "./globals.css";
 import { Toaster } from "@/shared/components/ui/sonner";
 import { cn } from "@/shared/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/react";
 import { Syne } from "next/font/google";
 
 const syne = Syne({
@@ -39,6 +40,7 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
+      <Analytics />
     </ClerkProvider>
   );
 }

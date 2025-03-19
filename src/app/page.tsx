@@ -32,7 +32,7 @@ export default function Home() {
 
           <div>
             <SignedOut>
-              <SignInButton>
+              <SignInButton forceRedirectUrl="/app/soundboard">
                 <Button className="cursor-pointer font-syne font-medium transition-colors">
                   <DoorOpen />
                   Login
@@ -63,17 +63,17 @@ export default function Home() {
 
           <SignedOut>
             <div className="flex items-center gap-10">
-              <SignInButton>
+              <SignInButton forceRedirectUrl="/app/soundboard">
                 <Button className="scale-110 cursor-pointer mt-10 font-syne font-medium transition-colors">
                   Login
                 </Button>
               </SignInButton>
 
-              <Link href="/sign-in">
+              <SignInButton forceRedirectUrl="/app/soundboard">
                 <Button className="scale-110 cursor-pointer mt-10 bg-[#c5f74f] font-syne font-medium hover:bg-[#c5f74f]/90 transition-colors">
                   Start now 🚀
                 </Button>
-              </Link>
+              </SignInButton>
             </div>
           </SignedOut>
 

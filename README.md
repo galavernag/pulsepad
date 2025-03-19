@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">PulsePad - Online Sound Effects Board</h1>
 
-## Getting Started
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-blue" alt="Next.js 15">
+  <img src="https://img.shields.io/badge/TailwindCSS-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Firestore-orange" alt="Firestore">
+  <img src="https://img.shields.io/badge/Realtime Database-green" alt="Realtime Database">
+  <img src="https://img.shields.io/badge/Clerk-SSO-red" alt="Clerk">
+  <img src="https://img.shields.io/badge/Vercel-Hosting-black" alt="Vercel">
+</p>
 
-First, run the development server:
+Welcome to **PulsePad**, a 100% online sound effects board!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📌 About the Project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**PulsePad** was created to make life easier for streamers and content creators by eliminating the need to install additional software. With it, you can play sound effects directly from your browser, simply and efficiently.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🔹 No installation required  
+🔹 Intuitive and easy-to-use interface  
+🔹 Direct access via browser  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> ⚠️ **Note:** The project is still in development, so *bugs* or downtime may occur.
 
-## Learn More
+## 🚀 Access Now
 
-To learn more about Next.js, take a look at the following resources:
+PulsePad is hosted on **Vercel** and can be accessed via the link below:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🔗 [pulsepad.vercel.app](https://pulsepad.vercel.app)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 Technologies Used
 
-## Deploy on Vercel
+This project was developed using:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js 15** - React framework for web applications
+- **Server Actions** - For efficient server-side data handling
+- **shadcn/ui** - Accessible and customizable UI component library
+- **Firestore** - To store user information
+- **Realtime Database** - To play sounds in real-time
+- **Clerk** - Secure and easy-to-integrate SSO authentication
+- **Zod** - For form field validation
+- **Tailwind CSS** - Fast and responsive styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📌 How to Contribute
+
+I truly appreciate any suggestions or feedback! If you'd like to contribute, follow these steps:
+
+1. **Fork** the repository
+2. Clone the repository to your machine:
+   ```sh
+   git clone https://github.com/galavernag/pulsepad.git
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Run the development environment:
+   ```sh
+   npm run dev
+   ```
+5. Make your changes and submit a **Pull Request**!
+
+## 📬 Contact
+
+If you want to share ideas or suggest improvements, feel free to reach out:
+
+🌐 [bento.me/galavernag](https://bento.me/galavernag)
+
+---
+
+💡 **PulsePad** - Creating sound experiences directly in your browser!
